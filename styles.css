@@ -87,7 +87,7 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 25px;
-    margin-top: 30px;
+    margin-top: 15px;
     max-width: 1200px;
     padding: 20px;
 }
@@ -282,4 +282,5 @@ main {
 }
 
 }
+
 
