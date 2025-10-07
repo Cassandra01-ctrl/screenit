@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: #111;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.logo .highlight {
+    color: #e50914;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 30px 0 0 30px;
+    outline: none;
+    width: 240px;
+    font-size: 0.95rem;
+    background-color: #222;
+    color: #fff;
+}
+
+#search-btn {
+    border: none;
+    background-color: #e50914;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+#search-btn:hover {
+    background-color: #b00610;
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    padding: 30px 40px;
+}
+
+.intro-text {
+    text-align: center;
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.movie-card {
+    background: #141414;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.movie-card h3 {
+    font-size: 1rem;
+    margin-bottom: 8px 0;
+    color: #fff;
+}
+
+.details-btn {
+    margin-top: 10px;
+    padding: 6px 10px;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.details-btn:hover {
+    background-color: #b00610;
+}
+
+
+.movie-details {
+    background: #141414;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 0 auto;
+    display: flex;
+    max-width: 900px;
+    text-align: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.movie-details img {
+    width: 280px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    height: auto;
+}
+
+.movie-details h2 {
+    color: #e50914;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.movie-details p {
+    color: #ddd;
+    line-height: 1.6;
+    margin: 5px 0;
+    text-align: left;
+    max-width: 500px;
+}
+
+#back-btn {
+    margin-bottom: 15px;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #e50914;
+    border: 1px solid #e50914;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#back-btn:hover {
+    background-color: #666;
+}
+
+
+/* Tablets (<= 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  #search-input {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  #search-btn {
+    font-size: 0.9rem;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .movie-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .movie-details img {
+    width: 200px;
+  }
+}
+
+/* Mobile phones (<= 480px) */
+@media (max-width: 480px) {
+  header {
+    padding: 10px 15px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #search-input {
+    border-radius: 30px;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+
+  #search-btn {
+    border-radius: 30px;
+    width: 100%;
+  }
+
+  .movie-list {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 20px;
+  }
+
+  .movie-card {
+    padding: 12px;
+  }
+
+  .movie-details img {
+    width: 200px;
+  }
+
+  .movie-details p {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+  .movie-details {
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+}
