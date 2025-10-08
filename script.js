@@ -1,9 +1,52 @@
 const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-input');
 const movieList = document.getElementById('movie-list');
+const suggestionsBox = document.getElementById('suggestions');
 
 const API_KEY = 'c641829c485c02c7bf8bc2ac3ccfc064'; // replace this
 const TMDB_BASE = 'https://api.themoviedb.org/3';
+
+/* --- AUTOCOMPLETE CODE --- */
+let debounceTimeout;
+
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.trim();
+  clearTimeout(debounceTimeout);
+
+  if (!query) {
+    suggestions.innerHTML = '';
+    return;
+  }
+
+  debounceTimeout = setTimeout(() => {
+    fetchSuggestions(query);
+  }, 300);
+});
+
+async function fetchSuggestions(query) {
+  try {
+    const res = await fetch(`${TMDB_BASE}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}&page=1`);
+    const data = await res.json();
+
+    console.log("Suggestions for:", query, data.results);
+
+    suggestions.innerHTML = data.results
+      .slice(0, 5)
+      .map(movie => `<div class="suggestion-item" data-title="${movie.title}">${movie.title}</div>`)
+      .join('');
+
+    document.querySelectorAll('.suggestion-item').forEach(item => {
+      item.addEventListener('click', () => {
+        searchInput.value = item.dataset.title;
+        suggestions.innerHTML = '';
+        searchMovies();
+      });
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 async function searchMovies() {
   const query = searchInput.value.trim();
@@ -98,3 +141,4 @@ searchBtn.addEventListener('click', searchMovies);
 searchInput.addEventListener('keypress', e => {
   if (e.key === 'Enter') searchMovies();
 });
+
